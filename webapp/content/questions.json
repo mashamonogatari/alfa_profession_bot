@@ -1,0 +1,218 @@
+[
+  {
+    "id": "q1",
+    "text": "Учитель задал большой проект на месяц. Тебе комфортнее…",
+    "options": [
+      {
+        "text": "Собрать команду одноклассников и распределить, кто что делает",
+        "weights": { "project_manager": 3, "event_manager": 2, "hr": 2 }
+      },
+      {
+        "text": "Делать одному — так никто не тормозит и не спорит",
+        "weights": { "developer": 2, "designer": 1, "researcher": 1 }
+      },
+      {
+        "text": "Найти одного-двух, с кем уже сработались, и сесть вдвоём",
+        "weights": { "ux_researcher": 2, "account_manager": 2, "smb_specialist": 2, "system_analyst": 2, "business_analyst": 1, "edu_product_manager": 1, "sales": 1 }
+      }
+    ]
+  },
+  {
+    "id": "q2",
+    "text": "У тебя свободный вечер. Скорее ты…",
+    "options": [
+      {
+        "text": "Залипнешь в одно дело и пять часов будешь в нём копаться",
+        "weights": { "developer": 3, "ml_engineer": 3, "researcher": 3, "risk_analyst": 2, "data_engineer": 2, "devops": 1, "infosec": 1 }
+      },
+      {
+        "text": "Будешь перепрыгивать между десятью занятиями: чаты, ютуб, гитара, друзья",
+        "weights": { "smm": 2, "event_manager": 2, "marketer": 1 }
+      },
+      {
+        "text": "Поделишь время по плану на пару дел и пройдёшь по списку",
+        "weights": { "product_manager": 2, "project_manager": 1, "business_analyst": 1 }
+      }
+    ]
+  },
+  {
+    "id": "q3",
+    "text": "Какая часть домашки бесит меньше всего?",
+    "options": [
+      {
+        "text": "Задачи с цифрами и формулами",
+        "weights": { "product_analyst": 3, "risk_analyst": 3, "ml_engineer": 2, "business_analyst": 2, "data_engineer": 2, "system_analyst": 2 }
+      },
+      {
+        "text": "Сочинения, конспекты, эссе",
+        "weights": { "pr": 3, "lawyer": 1, "marketer": 1, "designer": 1, "researcher": 1 }
+      },
+      {
+        "text": "Парная или групповая работа, где надо обсуждать",
+        "weights": { "sales": 2, "hr": 1, "ux_researcher": 1, "smb_specialist": 1, "edu_product_manager": 1, "event_manager": 1 }
+      }
+    ]
+  },
+  {
+    "id": "q4",
+    "text": "Тебе поручили оформить стенгазету. Ты…",
+    "options": [
+      {
+        "text": "Возьмёшь готовый шаблон и аккуратно заполнишь по образцу",
+        "weights": { "system_analyst": 3, "qa_engineer": 3, "lawyer": 3, "account_manager": 1, "devops": 2, "infosec": 2 }
+      },
+      {
+        "text": "Сделаешь свой макет с нуля, чтобы выглядело уникально",
+        "weights": { "designer": 3, "smm": 3, "marketer": 1 }
+      },
+      {
+        "text": "Найдёшь чужой удачный пример и улучшишь его под себя",
+        "weights": { "product_manager": 2, "edu_product_manager": 2, "business_analyst": 2, "smb_specialist": 2, "marketer": 1, "event_manager": 1, "product_analyst": 1, "ux_researcher": 1 }
+      }
+    ]
+  },
+  {
+    "id": "q5",
+    "text": "Друг не разобрался в теме по физике. Ты…",
+    "options": [
+      {
+        "text": "Решишь за него — так быстрее",
+        "weights": { "developer": 3, "ml_engineer": 1, "designer": 2, "qa_engineer": 1 }
+      },
+      {
+        "text": "Сядешь рядом и будешь объяснять, пока он не поймёт сам",
+        "weights": { "edu_product_manager": 3, "hr": 3, "ux_researcher": 2, "pr": 2, "researcher": 1 }
+      },
+      {
+        "text": "Найдёшь хорошее видео или статью и кинешь ссылку",
+        "weights": { "marketer": 3, "smm": 1, "product_manager": 1, "project_manager": 2 }
+      }
+    ]
+  },
+  {
+    "id": "q6",
+    "text": "Что круче?",
+    "options": [
+      {
+        "text": "Выиграть турнир за один вечер",
+        "weights": { "sales": 3, "event_manager": 3, "smm": 1, "marketer": 2 }
+      },
+      {
+        "text": "Полгода прокачивать персонажа или собирать редкую коллекцию",
+        "weights": { "researcher": 3, "ux_researcher": 3, "ml_engineer": 2, "data_engineer": 1 }
+      },
+      {
+        "text": "Дойти до финала чемпионата за сезон",
+        "weights": { "project_manager": 3, "product_manager": 2, "smb_specialist": 2 }
+      }
+    ]
+  },
+  {
+    "id": "q7",
+    "text": "Перед контрольной по математике ты…",
+    "options": [
+      {
+        "text": "Десять раз перерешаешь типовые задачи — точно не должно быть ошибок",
+        "weights": { "risk_analyst": 3, "lawyer": 3, "qa_engineer": 3, "account_manager": 2, "infosec": 3, "devops": 2 }
+      },
+      {
+        "text": "Попробуешь решить задачи нового типа — вдруг попадётся",
+        "weights": { "product_manager": 3, "designer": 1, "product_analyst": 1, "marketer": 1, "smm": 1 }
+      },
+      {
+        "text": "Поспишь как следует — свежая голова важнее",
+        "weights": { "ux_researcher": 1, "hr": 1 }
+      }
+    ]
+  },
+  {
+    "id": "q8",
+    "text": "У друга сломался телефон. Ты…",
+    "options": [
+      {
+        "text": "Полезешь чинить — интересно, что внутри",
+        "weights": { "developer": 3, "devops": 3, "data_engineer": 3, "ml_engineer": 2, "infosec": 2, "researcher": 1 }
+      },
+      {
+        "text": "Сначала спросишь, что он там делает чаще всего, — найдёшь альтернативу",
+        "weights": { "ux_researcher": 3, "product_manager": 1, "marketer": 2, "designer": 1, "business_analyst": 1 }
+      },
+      {
+        "text": "Свяжешь с тем, кто чинит, и будешь рядом, чтобы поддержать",
+        "weights": { "account_manager": 2, "smb_specialist": 2, "product_analyst": 1 }
+      }
+    ]
+  },
+  {
+    "id": "q9",
+    "text": "Защита итогового проекта. Тебе нравится…",
+    "options": [
+      {
+        "text": "Выходить и рассказывать перед аудиторией",
+        "weights": { "sales": 3, "pr": 3, "event_manager": 2, "hr": 1 }
+      },
+      {
+        "text": "Делать слайды, схемы и шпаргалки команде",
+        "weights": { "system_analyst": 3, "lawyer": 2, "qa_engineer": 1, "designer": 2 }
+      },
+      {
+        "text": "Отвечать на каверзные вопросы из зала",
+        "weights": { "researcher": 3, "business_analyst": 3, "edu_product_manager": 2 }
+      }
+    ]
+  },
+  {
+    "id": "q10",
+    "text": "Что приятнее?",
+    "options": [
+      {
+        "text": "Объяснить однокласснику тему один на один, пока он не поймёт",
+        "weights": { "account_manager": 3, "hr": 3, "smb_specialist": 3, "ux_researcher": 1, "edu_product_manager": 2 }
+      },
+      {
+        "text": "Запостить мем, который лайкнут 500 человек",
+        "weights": { "smm": 3, "marketer": 3, "pr": 2, "designer": 2 }
+      },
+      {
+        "text": "Сделать инструмент, которым потом пользуется вся школа",
+        "weights": { "developer": 2, "product_manager": 2, "data_engineer": 2, "devops": 1, "project_manager": 1 }
+      }
+    ]
+  },
+  {
+    "id": "q11",
+    "text": "Ваша команда в игре зависла. Что ты сделаешь первым?",
+    "options": [
+      {
+        "text": "Разберёшься в статистике последних матчей",
+        "weights": { "product_analyst": 3, "ml_engineer": 3, "data_engineer": 2, "researcher": 1, "risk_analyst": 1, "qa_engineer": 1, "system_analyst": 1 }
+      },
+      {
+        "text": "Скажешь: «Давайте попробуем новую стратегию»",
+        "weights": { "product_manager": 3, "project_manager": 2, "sales": 2, "marketer": 1, "event_manager": 1, "lawyer": 1, "pr": 1 }
+      },
+      {
+        "text": "Найдёшь, у кого из команды просело настроение, и поговоришь один на один",
+        "weights": { "hr": 2, "account_manager": 2, "ux_researcher": 1 }
+      }
+    ]
+  },
+  {
+    "id": "q12",
+    "text": "В школе появилось новое приложение для домашки. Ты…",
+    "options": [
+      {
+        "text": "Первый качаешь и тестишь все фичи",
+        "weights": { "product_manager": 3, "smm": 2, "designer": 1, "event_manager": 1, "sales": 1, "marketer": 1 }
+      },
+      {
+        "text": "Сначала прочитаешь, кто разработчик и какие отзывы",
+        "weights": { "infosec": 3, "risk_analyst": 3, "lawyer": 2, "qa_engineer": 1, "account_manager": 1 }
+      },
+      {
+        "text": "Поставишь, а потом сразу попробуешь найти, как его сломать",
+        "weights": { "qa_engineer": 3, "developer": 2, "devops": 1, "pr": 1 }
+      }
+    ]
+  }
+]

@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#EF3124">
+  <title>Альфа-Будущее — кем ты будешь?</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+</head>
+<body>
+
+  <main id="app" class="app" hidden>
+
+    <!-- 1. WELCOME -->
+    <section class="screen screen--welcome" data-screen="welcome">
+      <div class="welcome-hero">
+        <div class="maneki maneki--big">
+          <img src="assets/maneki.gif" alt="">
+        </div>
+      </div>
+      <h1 class="t-title" data-text="welcome.title"></h1>
+      <p class="t-subtitle" data-text="welcome.subtitle"></p>
+      <button class="btn btn--primary btn--block" data-action="start" data-text="welcome.start_button"></button>
+    </section>
+
+    <!-- 2. QUIZ -->
+    <section class="screen screen--quiz" data-screen="quiz" hidden>
+      <header class="quiz-head">
+        <div class="quiz-progress-label" id="quiz-progress-label"></div>
+        <div class="quiz-progress-bar"><div class="quiz-progress-bar__fill" id="quiz-progress-fill"></div></div>
+      </header>
+      <div class="maneki maneki--mid">
+        <img src="assets/maneki.gif" alt="">
+      </div>
+      <h2 class="quiz-question" id="quiz-question"></h2>
+      <div class="quiz-options" id="quiz-options"></div>
+    </section>
+
+    <!-- 3. RESULT -->
+    <section class="screen screen--result" data-screen="result" hidden>
+      <div class="result-burst">
+        <div class="result-emoji" id="result-emoji"></div>
+        <h1 class="result-headline" id="result-headline"></h1>
+        <p class="result-description" id="result-description"></p>
+      </div>
+      <p class="result-subline" data-text="result.subline"></p>
+      <ul class="result-list" id="result-list"></ul>
+      <button class="btn btn--primary btn--block" data-action="to-lead" data-text="result.continue_button"></button>
+    </section>
+
+    <!-- 4. LEAD (PD form) -->
+    <section class="screen screen--lead" data-screen="lead" hidden>
+      <h1 class="t-title" data-text="lead.title"></h1>
+      <p class="t-subtitle" data-text="lead.subtitle"></p>
+
+      <form class="lead-form" id="lead-form" novalidate>
+        <label class="field">
+          <span class="field-label" data-text="lead.name_label"></span>
+          <input class="field-input" type="text" name="name" id="lead-name" autocomplete="given-name" required>
+          <span class="field-error" id="err-name" hidden></span>
+        </label>
+
+        <div class="field">
+          <div class="contact-switch" role="tablist">
+            <button type="button" class="contact-switch__btn is-active" data-contact-type="phone" data-text="lead.contact_type_phone"></button>
+            <button type="button" class="contact-switch__btn" data-contact-type="email" data-text="lead.contact_type_email"></button>
+          </div>
+          <input class="field-input" type="tel" name="contact" id="lead-contact" autocomplete="tel" required>
+          <span class="field-error" id="err-contact" hidden></span>
+        </div>
+
+        <!-- honeypot -->
+        <label class="hp">
+          Сайт
+          <input type="text" name="website" id="lead-website" tabindex="-1" autocomplete="off">
+        </label>
+
+        <label class="checkbox">
+          <input type="checkbox" id="lead-consent">
+          <span>
+            <span data-text="lead.consent_label"></span>
+            <a id="lead-consent-link" target="_blank" rel="noopener" data-text="lead.consent_link_text"></a>
+          </span>
+        </label>
+        <span class="field-error" id="err-consent" hidden></span>
+
+        <button type="button" class="btn btn--ghost btn--block" id="btn-tg-contact" hidden data-text="lead.telegram_button"></button>
+
+        <button type="submit" class="btn btn--primary btn--block" id="btn-submit" data-text="lead.submit_button"></button>
+        <span class="field-error field-error--center" id="err-network" hidden></span>
+      </form>
+    </section>
+
+    <!-- 5. OUTRO -->
+    <section class="screen screen--outro" data-screen="outro" hidden>
+      <div class="maneki maneki--big">
+        <img src="assets/maneki.gif" alt="">
+      </div>
+      <h1 class="t-title" data-text="outro.title"></h1>
+      <p class="t-subtitle" data-text="outro.body"></p>
+      <button class="btn btn--primary btn--block" data-action="open-channel" data-text="outro.channel_button"></button>
+    </section>
+
+  </main>
+
+  <div class="loading" id="loading">Загрузка…</div>
+
+  <script src="app.js"></script>
+</body>
+</html>

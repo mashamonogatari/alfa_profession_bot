@@ -1,0 +1,45 @@
+{
+  "welcome": {
+    "title": "Тест — твоё призвание в финтехе",
+    "subtitle": "Это интерактивный тест. Пройди, чтобы узнать, какая профессия в Альфа-Банке тебе подходит, а потом приходи на стажировку.",
+    "start_button": "Начать"
+  },
+  "quiz": {
+    "progress_template": "Вопрос {current} из {total}"
+  },
+  "result": {
+    "headline_template": "Тебе подходит профессия — {profession} на {percent}%",
+    "subline": "Вот ещё три, в которых ты тоже будешь хорош:",
+    "continue_button": "Получить бейджик стажёра →"
+  },
+  "lead": {
+    "title": "Забери бейджик стажёра",
+    "subtitle": "Оставь контакт — пришлём вакансии и приглашения в Альфа-Будущее.",
+    "name_label": "Как тебя зовут",
+    "name_placeholder": "Имя",
+    "contact_type_phone": "Телефон",
+    "contact_type_email": "Email",
+    "contact_placeholder_phone": "+7 999 123-45-67",
+    "contact_placeholder_email": "name@example.com",
+    "consent_label": "Согласен на обработку персональных данных",
+    "consent_link_text": "(подробности)",
+    "consent_link_url": "https://alfabank.servicecdn.ru/site-upload/65/0f/10571/alfafuture_agreement.pdf",
+    "telegram_button": "Подставить номер из Telegram",
+    "submit_button": "Отправить",
+    "submitting": "Отправляем…",
+    "error_name": "Напиши имя",
+    "error_phone": "Введи телефон в формате +7 999 123-45-67",
+    "error_email": "Похоже, в почте опечатка",
+    "error_consent": "Без согласия не получится отправить",
+    "error_network": "Не получилось отправить, попробуй ещё раз"
+  },
+  "outro": {
+    "title": "Отлично, теперь ты стажёр в Альфа-Банке!",
+    "body": "Пройди на Фабрику Стажёров, возьми основу для бейджика и впиши туда свой результат. До встречи на рабочих проектах!",
+    "channel_button": "Подписаться на @alfafuture",
+    "channel_url": "https://t.me/alfafuture"
+  },
+  "api": {
+    "base_url": "http://localhost:8080"
+  }
+}
