@@ -1,10 +1,3 @@
-"""Single python process for Alpha-Future profession test:
-- aiogram bot serving /start with a WebApp button
-- aiohttp endpoint POST /api/lead writing to a SQLite database
-
-Run with:  python main.py
-"""
-
 import asyncio
 import hashlib
 import hmac
@@ -39,14 +32,28 @@ log = logging.getLogger("alfa.main")
 
 # ---------- config ----------
 
-TELEGRAM_BOT_TOKEN = os.environ["TELEGRAM_BOT_TOKEN"]
-WEBAPP_URL = os.environ["WEBAPP_URL"]
-DB_PATH = os.environ.get("DB_PATH", "./leads.db")
+TELEGRAM_BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN", "").strip()
+WEBAPP_URL = os.environ.get("WEBAPP_URL", "").strip()
+
+# Persistent storage:
+#   - bothost mounts a persistent volume at $DATA_DIR (e.g. /app/data)
+#   - on a plain VPS we fall back to ./leads.db next to main.py
+_DATA_DIR = os.environ.get("DATA_DIR", "").strip()
+DB_PATH = os.environ.get("DB_PATH") or (
+    os.path.join(_DATA_DIR, "leads.db") if _DATA_DIR else "./leads.db"
+)
 
 HTTP_HOST = os.environ.get("HTTP_HOST", "0.0.0.0")
-HTTP_PORT = int(os.environ.get("HTTP_PORT", "8080"))
+# Many PaaS (bothost / Railway / Render / Heroku) inject the bind port as $PORT
+HTTP_PORT = int(os.environ.get("PORT", os.environ.get("HTTP_PORT", "8080")))
 
 ALLOWED_ORIGINS = [o.strip() for o in os.environ.get("ALLOWED_ORIGINS", "*").split(",") if o.strip()]
+
+# Where the static webapp/ lives, relative to this file by default.
+WEBAPP_DIR = os.environ.get(
+    "WEBAPP_DIR",
+    os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "webapp")),
+)
 
 # ---------- rate limit ----------
 
@@ -253,26 +260,52 @@ def build_dispatcher() -> Dispatcher:
 
 # ---------- entrypoint ----------
 
+async def index_html(request: web.Request) -> web.Response:
+    index = os.path.join(WEBAPP_DIR, "index.html")
+    if not os.path.exists(index):
+        return web.Response(status=404, text="webapp index.html not found")
+    return web.FileResponse(index, headers={"Cache-Control": "no-cache, must-revalidate"})
+
+
 async def main() -> None:
     store = AsyncLeadStore(LeadStore(DB_PATH))
 
     app = web.Application()
     app["store"] = store
+    # API routes first (priority over static catch-all)
     app.router.add_post("/api/lead", post_lead)
     app.router.add_options("/api/lead", options_lead)
     app.router.add_get("/healthz", health)
-
-    bot = Bot(token=TELEGRAM_BOT_TOKEN, default=DefaultBotProperties(parse_mode=ParseMode.HTML))
-    dp = build_dispatcher()
+    # Webapp static files (index.html on /, then all assets)
+    if os.path.isdir(WEBAPP_DIR):
+        app.router.add_get("/", index_html)
+        app.router.add_static("/", WEBAPP_DIR, show_index=False)
+        log.info("Serving webapp from %s", WEBAPP_DIR)
+    else:
+        log.warning("WEBAPP_DIR not found (%s) — API-only mode", WEBAPP_DIR)
 
     runner = web.AppRunner(app)
     await runner.setup()
     site = web.TCPSite(runner, HTTP_HOST, HTTP_PORT)
     await site.start()
     log.info("HTTP server listening on %s:%s", HTTP_HOST, HTTP_PORT)
-    log.info("WebApp URL: %s", WEBAPP_URL)
     log.info("SQLite DB: %s", DB_PATH)
+    log.info("Allowed origins: %s", ALLOWED_ORIGINS)
 
+    if not TELEGRAM_BOT_TOKEN:
+        log.warning("TELEGRAM_BOT_TOKEN is empty — running API only, no bot.")
+        try:
+            await asyncio.Event().wait()
+        finally:
+            await runner.cleanup()
+        return
+
+    if not WEBAPP_URL:
+        log.warning("WEBAPP_URL is empty — bot will start, but /start button will fail.")
+
+    log.info("WebApp URL: %s", WEBAPP_URL)
+    bot = Bot(token=TELEGRAM_BOT_TOKEN, default=DefaultBotProperties(parse_mode=ParseMode.HTML))
+    dp = build_dispatcher()
     try:
         await dp.start_polling(bot, allowed_updates=dp.resolve_used_update_types())
     finally:
